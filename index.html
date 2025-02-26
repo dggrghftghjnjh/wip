@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دردشة واتساب</title>
+    <title>دردشة ماسنجر</title>
     <style>
-        #whatsapp-chat {
+        #messenger-chat {
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -17,8 +17,8 @@
             display: none;
             z-index: 1000;
         }
-        #whatsapp-header {
-            background: #25D366;
+        #messenger-header {
+            background: #0084ff;
             color: white;
             padding: 10px;
             text-align: center;
@@ -31,11 +31,11 @@
             height: 90%;
             border: none;
         }
-        #whatsapp-button {
+        #messenger-button {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: #25D366;
+            background: #0084ff;
             color: white;
             padding: 15px 20px;
             border-radius: 50px;
@@ -48,22 +48,30 @@
 </head>
 <body>
 
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0" nonce="YOUR_NONCE"></script>
+
+    <div id="messenger-chat">
+        <div id="messenger-header">دردشة ماسنجر</div>
+        <iframe src="https://www.messenger.com/t/YOUR_PAGE_ID" frameborder="0"></iframe>
+    </div>
+
+    <div class="fb-messenger-button" 
+         messenger_app_id="1011196174236772" 
+         data-app-id="1011196174236772" 
+         data-size="large" 
+         data-width="300" 
+         data-height="50" 
+         data-href="https://dggrghftghjnjh.github.io/wip/"></div>
+
+    <button id="messenger-button" onclick="toggleChat()">ابدأ المحادثة</button>
+
     <script>
-        function sendMessage() {
-            fetch('https://api.chat-api.com/instanceYOUR_INSTANCE/sendMessage?token=YOUR_TOKEN', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    phone: "YOUR_CUSTOMER_PHONE",
-                    body: "مرحبًا! كيف يمكنني مساعدتك؟"
-                })
-            }).then(response => response.json())
-            .then(data => console.log(data));
+        function toggleChat() {
+            const chatWindow = document.getElementById('messenger-chat');
+            chatWindow.style.display = chatWindow.style.display === 'none' || chatWindow.style.display === '' ? 'block' : 'none';
         }
     </script>
-    <button onclick="sendMessage()">ابدأ المحادثة</button>
-    
-</script>
 
 </body>
 </html>
